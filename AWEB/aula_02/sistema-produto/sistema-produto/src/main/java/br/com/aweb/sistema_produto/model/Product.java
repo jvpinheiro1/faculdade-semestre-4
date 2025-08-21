@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
@@ -14,6 +15,7 @@ public class Product {
     private Long id;
     @NotBlank(message = "Nome é obrigatório!")
     private String name;
+    @NotNull(message = "O preço é obrigatorio!")
     @Positive(message = "Preço deve ser positive!")
     private Double price;
     private String description;
