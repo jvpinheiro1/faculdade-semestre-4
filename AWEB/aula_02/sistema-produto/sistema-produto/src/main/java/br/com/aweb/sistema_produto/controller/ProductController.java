@@ -1,5 +1,7 @@
 package br.com.aweb.sistema_produto.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,5 +73,14 @@ public class ProductController {
         }
         return "redirect:/products";
     }
+    @GetMapping("/search")
+    public String findByName(@RequestParam(name = "name", required = false) String name, Model model) {
+       if (name != null && !name.isBlank()) {
+            List<Product> products = productService.findByName(name);
+            model.addAttribute("search", products);
+       }
+        return "search";
+    }
+    
 
 }
