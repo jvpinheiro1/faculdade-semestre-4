@@ -216,3 +216,21 @@ INSERT INTO TODO (name, created_at, deadline, finished_at) VALUES
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-09-03 19:00:44.735823-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
+DROP TABLE users [42102-232]
+2025-09-03 19:01:04.818890-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 19:01:08.618441-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 19:01:33.013988-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 19:01:33.746898-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
+2025-09-03 19:02:46.051989-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TODO" not found (this database is empty); SQL statement:
+select t1_0.id,t1_0.created_at,t1_0.deadline,t1_0.finished_at,t1_0.title from todo t1_0 [42104-232]
