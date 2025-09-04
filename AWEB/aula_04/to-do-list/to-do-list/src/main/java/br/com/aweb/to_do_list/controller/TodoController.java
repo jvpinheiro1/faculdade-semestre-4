@@ -1,5 +1,6 @@
 package br.com.aweb.to_do_list.controller;
 
+import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.aweb.to_do_list.model.Todo;
 import br.com.aweb.to_do_list.repository.TodoRepository;
 import jakarta.validation.Valid;
+
 
 
 
@@ -71,7 +73,7 @@ public class TodoController {
     @GetMapping("/edit/{id}")
     public ModelAndView edit(@PathVariable Long id) {
         Optional<Todo> todo = todoRepository.findById(id);
-        if (todo.isPresent()) {
+        if (todo.isPresent() && todo.get().getFinishedAt() == null) {
             return new ModelAndView("form", Map.of("todo", todo.get()));
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -84,6 +86,33 @@ public class TodoController {
         }
         todoRepository.save(todo);
         return "redirect:/todo";
+    }
+
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        if (todo.isPresent()) {
+            return new ModelAndView("delete", Map.of("todo", todo.get()));
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+    
+    @PostMapping("/delete/{id}")
+    public String delete( Todo todo) {
+        todoRepository.delete(todo);
+        return "redirect:/todo";
+    }
+    
+    @PostMapping("/finish/{id}")
+    public String finish(@PathVariable Long id) {
+        var optionalTodo = todoRepository.findById(id);
+        if (optionalTodo.isPresent() && optionalTodo.get().getFinishedAt() == null){
+            var todo = optionalTodo.get();
+            todo.setFinishedAt(LocalDate.now());
+            todoRepository.save(todo);
+            return "redirect:/todo";
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
     
 }

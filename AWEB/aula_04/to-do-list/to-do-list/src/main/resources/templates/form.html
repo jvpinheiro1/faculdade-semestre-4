@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Todo list - Nova Tarefa</title>
+    <!-- <title>Todo list - Nova Tarefa</title> -->
+    <title th:unless="${todo.id}">Todo list - Nova Tarefa</title>
+    <title th:if="${todo.id}">Todo list - Editar Tarefa</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,7 +20,9 @@
       </div>
     </nav>
     <main class="container">
-      <h1>Nova Tarefa</h1>
+      <!-- <h1>Nova Tarefa</h1> -->
+      <h1 th:unless="${todo.id}">Nova Tarefa</h1>
+      <h1 th:if="${todo.id}">Editar Tarefa</h1>
 
       <form method="post" th:object="${todo}">
         <div class="mb-3">
