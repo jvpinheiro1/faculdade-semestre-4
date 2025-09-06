@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title th:text="${aluno.id} == null ? 'Novo Aluno' : 'Editar Aluno'"></title>
+  </head>
+
+  <body>
+    <h1 th:text="${aluno.id} == null ? 'Novo Aluno' : 'Editar Aluno'"></h1>
+
+    <form th:action="@{/alunos}" th:object="${aluno}" method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{name}" />
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+      </div>
+
+      <div>
+        <label for="idade">Idade:</label>
+        <input type="idade" id="idade" th:field="*{idade}" />
+        <span th:if="${#fields.hasErrors('idade')}" th:errors="*{idade}"></span>
+      </div>
+
+      <div>
+        <label for="materia">Matéria:</label>
+        <input type="text" id="materia" th:field="*{materia}" />
+        <span th:if="${#fields.hasErrors('materia')}" th:errors="*{materia}"></span>
+      </div>
+
+      <div>
+        <button type="submit">Salvar</button>
+      </div>
+    </form>
+
+    <p>
+      <a th:href="@{/alunos}">Voltar para lista</a>
+    </p>
+  </body>
+</html>

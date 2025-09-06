@@ -1,7 +1,5 @@
 package com.br.aweb.sistema_aluno.model;
 
-import io.micrometer.common.lang.NonNull;
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
