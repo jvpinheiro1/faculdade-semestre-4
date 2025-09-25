@@ -17,7 +17,14 @@ public class ClienteService {
 
     @Transactional
     public Cliente salvar(Cliente cliente) {
-        return clienteRepository.save(cliente);
+        if (clienteRepository.existsByCpf(cliente.getCpf())) {
+            throw new IllegalArgumentException("CPF já cadastrado.");
+        }
+        if (clienteRepository.existsByEmail(cliente.getEmail())) {
+            throw new IllegalArgumentException("E-mail já cadastrado.");
+        }
+        Cliente clienteSalvo = clienteRepository.save(cliente);
+        return clienteSalvo;
     }
 
     public List<Cliente> listarTodos() {
@@ -35,6 +42,15 @@ public class ClienteService {
             throw new IllegalArgumentException("Cliente não encontrado.");
 
         var clienteExistente = optionalCliente.get();
+
+        if (!clienteExistente.getCpf().equals(clienteAtualizado.getCpf()) &&
+                clienteRepository.existsByCpf(clienteAtualizado.getCpf())) {
+            throw new IllegalArgumentException("CPF já cadastrado.");
+        }
+        if (!clienteExistente.getEmail().equals(clienteAtualizado.getEmail()) &&
+                clienteRepository.existsByEmail(clienteAtualizado.getEmail())) {
+            throw new IllegalArgumentException("E-mail já cadastrado.");
+        }
 
         clienteExistente.setNome(clienteAtualizado.getNome());
         clienteExistente.setEmail(clienteAtualizado.getEmail());
