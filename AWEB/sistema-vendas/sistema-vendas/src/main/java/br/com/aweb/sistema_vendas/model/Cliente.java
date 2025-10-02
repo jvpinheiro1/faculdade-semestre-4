@@ -1,12 +1,17 @@
 package br.com.aweb.sistema_vendas.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -22,6 +27,9 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pedido> pedido = new ArrayList<>();
 
     @NotBlank(message = "Nome é obrigatório")
     @Column(nullable = false, length = 100)
@@ -65,4 +73,6 @@ public class Cliente {
     @NotBlank(message = "CEP é obrigatório")
     @Column(nullable = false, length = 100)
     private String cep;
+
+    
 }
