@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/setores")
 public class SetorController {
-
+    
     @Autowired
     private SetorService setorService;
 
@@ -65,7 +65,7 @@ public class SetorController {
         return new ModelAndView("setor/delete", Map.of("setor", optionalSetor.get()));
 
     }
-
+    
     @PostMapping("/delete/{id}")
     public String excluir(Setor setor) {
         setorService.excluirSetor(setor.getId());
