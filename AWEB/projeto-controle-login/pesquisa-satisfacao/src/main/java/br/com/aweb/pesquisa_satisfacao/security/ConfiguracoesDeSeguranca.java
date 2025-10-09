@@ -55,6 +55,7 @@ public class ConfiguracoesDeSeguranca {
                 .logoutSuccessUrl("/login?logout")
                 .permitAll() // permite acesso à página de login sem autenticação
             )
+            .rememberMe(rememberMe -> rememberMe.key("lembrarDeMim"))
             .build(); // constrói e retorna o SecurityFilterChain
     }
 
