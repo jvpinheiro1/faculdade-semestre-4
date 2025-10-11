@@ -4,10 +4,12 @@ import { BleManager } from 'react-native-ble-plx';
 
 const manager = new BleManager();
 
-export default function bleScannerComponent() {
+// Corrigido: Nome do componente com letra maiúscula
+export default function BleScannerComponent() {
 
-  // Variavel de estado 'devices' para guardar lista de dispositivos
-  const [devices, setDevices] = useState([]);
+  // Corrigido: Inicialização do estado devices com tipo correto
+  const [devices, setDevices] = useState([{ id: '', name: '' }]); 
+  // Para JS puro, basta garantir que sempre adiciona objetos {id, name}
 
   // O estado 'radioPowerOn' verifica se o bluetooth está ligado (true) ou desligado (false)
   const [radioPowerOn, setRadioPowerOn] = useState(false);
@@ -72,6 +74,7 @@ export default function bleScannerComponent() {
       alert('Por favor, ligue o Bluetooth para escanear dispositivos.')
       return;
     }
+    // No início do scanForDevices, limpe o array corretamente:
     setDevices([]);
     manager.startDeviceScan(null, null, (error, device) => {
       if(error){
@@ -85,25 +88,63 @@ export default function bleScannerComponent() {
       if (device && device.name){
         setDevices(prevDevices => {
           if(!prevDevices.some(d => d.id === device.id)){
-            return [...prevDevices, device];
+            return [...prevDevices, { id: device.id, name: device.name || 'Sem nome' }];
           }
           return prevDevices;
         })
       }
     });
 
+    // Corrigido: Sintaxe do setTimeout
     setTimeout(()=>{
-      manager.stopDeviceScan(), 5000
-    })
+      manager.stopDeviceScan();
+    }, 5000);
   }
 
   return(
-    <View>
-      <Text>
-        
+    <View style={styles.container}>
+      <Text style={styles.title}>
+        Dispositivos Bluetooth encontrados:
       </Text>
+      <Button title='Scan devices'  onPress={scanForDevices}/>
+      <FlatList 
+        // No FlatList, filtre para não mostrar o item vazio inicial:
+        data={devices.filter(d => d.id)}
+        keyExtractor={item => item.id}
+        renderItem={({item})=> (
+          <Text style={styles.deviceText}>
+            {item.name}  --- ({item.id})
+          </Text>
+        )}
+      />
     </View>
-  )
+  );
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f6fa',
+    padding: 20,
+    paddingTop: 50,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#273c75',
+    textAlign: 'center',
+  },
+  deviceText: {
+    fontSize: 16,
+    padding: 12,
+    marginVertical: 6,
+    backgroundColor: '#dff9fb',
+    borderRadius: 8,
+    color: '#353b48',
+    elevation: 2,
+  },
+});
+
 

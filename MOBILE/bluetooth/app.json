@@ -20,13 +20,38 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permissions.BLUETOOTH",
+        "android.permissions.BLUETOOTH_ADMIN",
+        "android.permissions.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT"
+      ],
+      "package": "com.mfalvo.bluetooth"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-build-properties"
-    ]
+      [
+        "react-native-ble-plx",
+        {
+          "isBackgroundEnable": true,
+          "modes": [
+            "peripheral",
+            "central"
+          ],
+          "bluetoothAlwaysPermisson": "Permitir que $(PRODUCT_NAME) use o Bluetooth",
+          "bluetoothPeripheralPermission": "Permitir que $(PRODUCT_NAME) se conecte aos dispositivos o Bluetooth"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a72e94d3-09d7-4ef8-a9f0-4961c6a758d2"
+      }
+    }
   }
 }
