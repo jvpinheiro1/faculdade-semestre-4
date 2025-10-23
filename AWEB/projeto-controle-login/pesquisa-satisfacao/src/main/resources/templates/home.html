@@ -22,8 +22,8 @@
           <button id="btn-nova-avaliacao" class="btn-home">
             Nova Avaliação
           </button>
-          <a th:href="@{/setores}" class="btn-home">Gerenciar Setores</a>
-          <!-- <a th:href="@{/setor}" class="btn-home" sec:authorize="hasRole('ADMIN')">Gerenciar Setores</a> -->
+          <!-- <a th:href="@{/setores}" class="btn-home">Gerenciar Setores</a> -->
+          <a th:href="@{/setores}" class="btn-home" sec:authorize="hasRole('ADMIN')">Gerenciar Setores</a>
         </div>
       </div>
     </div>

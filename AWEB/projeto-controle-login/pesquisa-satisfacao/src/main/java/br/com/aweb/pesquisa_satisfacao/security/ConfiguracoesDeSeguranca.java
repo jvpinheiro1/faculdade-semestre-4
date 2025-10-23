@@ -41,6 +41,7 @@ public class ConfiguracoesDeSeguranca {
             .authorizeHttpRequests(req -> {
                 // Permite acesso sem autenticação a recursos estáticos (CSS, JS, imagens)
                 req.requestMatchers("/css/**", "/js/**", "/img/**").permitAll();
+                req.requestMatchers("/setores/**").hasRole("ADMIN");
                 // Exige autenticação para qualquer outra requisição
                 req.anyRequest().authenticated();
             })
