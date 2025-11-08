@@ -31,4 +31,13 @@ public class Endereco {
         this.complemento = endereco.complemento();
     }
 
+    public void atualizarInformacoes(DadosEndereco dados) {
+        if (dados.logradouro() != null) {
+            if (dados.logradouro().isBlank())
+                throw new IllegalArgumentException("Logradouro não pode ser nulo");
+            else
+                this.logradouro = dados.logradouro();
+        }
+    }
+
 }
