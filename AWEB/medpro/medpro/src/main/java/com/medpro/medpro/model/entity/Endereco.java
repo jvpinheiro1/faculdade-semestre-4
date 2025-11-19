@@ -12,13 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Endereco {
-    
+
     private String logradouro;
+
     private String bairro;
+
     private String cep;
+
     private String cidade;
+
     private String uf;
+
     private String numero;
+
     private String complemento;
 
     public Endereco(DadosEndereco endereco) {
@@ -32,12 +38,57 @@ public class Endereco {
     }
 
     public void atualizarInformacoes(DadosEndereco dados) {
-        if (dados.logradouro() != null) {
-            if (dados.logradouro().isBlank())
-                throw new IllegalArgumentException("Logradouro não pode ser nulo");
-            else
+        if(dados.logradouro() != null){
+            if(dados.logradouro().isBlank()){
+                throw new IllegalArgumentException("Logradouro não pode ser nulo!");
+            }
+            else{
                 this.logradouro = dados.logradouro();
+            }
+        }
+
+        if(dados.bairro() != null){
+            if(dados.bairro().isBlank()){
+                throw new IllegalArgumentException("Bairro não pode ser nulo!");
+            }
+            else{
+                this.bairro = dados.bairro();
+            }
+        }
+
+        if(dados.cep() != null){
+            if(dados.cep().isBlank()){
+                throw new IllegalArgumentException("Cep não pode ser nulo!");
+            }
+            else{
+                this.cep = dados.cep();
+            }
+        }
+
+        if(dados.cidade() != null){
+            if(dados.cidade().isBlank()){
+                throw new IllegalArgumentException("Cidade não pode ser nulo!");
+            }
+            else{
+                this.cidade = dados.cidade();
+            }
+        }
+
+        if(dados.uf() != null){
+            if(dados.uf().isBlank()){
+                throw new IllegalArgumentException("UF não pode ser nulo!");
+            }
+            else{
+                this.uf = dados.uf();
+            }
+        }
+
+        if(dados.numero() != null){
+                this.numero = dados.numero();
+        }
+
+        if(dados.complemento() != null){
+                this.complemento = dados.complemento();
         }
     }
-
 }

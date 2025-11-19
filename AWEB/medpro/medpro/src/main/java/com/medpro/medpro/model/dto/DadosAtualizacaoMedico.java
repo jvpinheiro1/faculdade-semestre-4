@@ -6,6 +6,7 @@ public record DadosAtualizacaoMedico(
    @NotNull Long id,
    String nome, 
    String telefone, 
-   String endereco) {
+   DadosEndereco endereco
+) {
 
 } 
