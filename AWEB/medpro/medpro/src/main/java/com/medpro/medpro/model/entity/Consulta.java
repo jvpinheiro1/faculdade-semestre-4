@@ -46,5 +46,6 @@ public class Consulta {
     private StatusConsulta status = StatusConsulta.ATIVA;
 
     
-    private String motivo_cancelamento;
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
 }
