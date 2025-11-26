@@ -2,6 +2,8 @@ package com.medpro.medpro.model.entity;
 
 import java.time.LocalDateTime;
 
+import com.medpro.medpro.enums.MotivoCancelamento;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -38,7 +40,7 @@ public class Consulta {
     private Medico medico;
 
     @Column(nullable = false)
-    private LocalDateTime data_consulta;
+    private LocalDateTime dataConsulta;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

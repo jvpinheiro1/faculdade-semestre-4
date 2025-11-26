@@ -6,7 +6,16 @@ import com.medpro.medpro.model.entity.Consulta;
 
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     
+    // Verifica se o médico tem consulta ativa (não cancelada) no horário
     boolean existsByMedicoIdAndDataConsultaAndMotivoCancelamentoIsNull(Long idMedico, LocalDateTime data);
 
-    boolean existsByPacienteIdAndDataConsultaBetween(Long idPaciente, LocalDateTime primeiroHorario, LocalDateTime ultimoHorario);
+    // Verifica se o paciente já tem consulta no mesmo dia
+    boolean existsByPacienteIdAndDataConsultaBetween(Long pacienteId,
+                                                     LocalDateTime inicio,
+                                                     LocalDateTime fim);
+                                                     
+    boolean existsByMedicoIdAndDataConsultaBetween(Long idMedico,
+                                               LocalDateTime inicio,
+                                               LocalDateTime fim);
+                                                 
 }
