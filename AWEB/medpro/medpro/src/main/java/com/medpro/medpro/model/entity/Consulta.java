@@ -50,4 +50,8 @@ public class Consulta {
     
     @Enumerated(EnumType.STRING)
     private MotivoCancelamento motivoCancelamento;
+
+    
+
+
 }
